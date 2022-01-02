@@ -124,7 +124,7 @@ mkdir -p /etc/nqnext/probes
 
 
 # Download agent
-curl -L https://github.com/ovenator/nqnext-agent/archive/refs/heads/master.tar.gz | tar -xz --strip-components 1 || exit 1
+curl -L https://github.com/ovenator/nqnext-agent/archive/refs/heads/master.tar.gz | tar -xz --strip-components 1 -C /etc/nqnext || exit 1
 
 if [ -f /etc/nqnext/agent/run.sh ]
 then
