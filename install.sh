@@ -145,7 +145,7 @@ then
 	chmod +s `type -p ping`
 
 	# Configure cron
-	crontab -u nqnext -l 2>/dev/null | { cat; echo "*/1 * * * * bash cd $NQ_HOME/agent && ./run.sh > cron.log 2>&1"; } | crontab -u nqnext -
+	crontab -u nqnext -l 2>/dev/null | { cat; echo "*/1 * * * * cd $NQ_HOME/agent && bash run.sh > cron.log 2>&1"; } | crontab -u nqnext -
 
 	# Show success
 	echo -e "|\n|   Success: The NQNext agent has been installed\n|"

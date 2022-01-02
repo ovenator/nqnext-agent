@@ -6,6 +6,9 @@ You will still be able to see the entire output in your probes dashboard.
 
 See default probes in `agent/probes` for reference.
 
+### Installation
+Create new server in NQNext and follow instructions.
+
 ### Reference
 #### \_stamp__{id}
 - **_level** decides the color and order of the stamps
