@@ -120,12 +120,14 @@ then
 fi
 
 # Create dirs
-mkdir -p $NQ_HOME/agent
 mkdir -p $NQ_HOME/probes
 
 
 # Download agent
-curl -L https://github.com/ovenator/nqnext-agent/archive/refs/heads/master.tar.gz | tar -xz --strip-components 1 -C $NQ_HOME || exit 1
+mkdir nqnext-install-tmp && cd nqnext-install-tmp || exit 1
+curl -L https://github.com/ovenator/nqnext-agent/archive/refs/heads/master.tar.gz | tar -xz --strip-components 1 || exit 1
+cp -R agent/ $NQ_HOME/agent/
+cd .. && rm -rf nqnext-install-tmp || exit 1
 
 if [ -f $NQ_HOME/agent/run.sh ]
 then
