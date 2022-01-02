@@ -17,6 +17,7 @@
 
 # Set environment
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+NQ_HOME=/etc/nqnext
 
 # Prepare output
 echo -e "|\n|   NQNext Installer\n|   ===================\n|"
@@ -113,37 +114,38 @@ then
 fi
 
 # Attempt to delete previous agent
-if [ -f /etc/nqnext/agent/uninstall.sh ]
+if [ -f $NQ_HOME/agent/uninstall.sh ]
 then
-  bash /etc/nqnext/agent/uninstall.sh || exit 1
+  bash $NQ_HOME/agent/uninstall.sh || exit 1
 fi
 
 # Create dirs
-mkdir -p /etc/nqnext/agent
-mkdir -p /etc/nqnext/probes
+mkdir -p $NQ_HOME/agent
+mkdir -p $NQ_HOME/probes
 
 
 # Download agent
-curl -L https://github.com/ovenator/nqnext-agent/archive/refs/heads/master.tar.gz | tar -xz --strip-components 1 -C /etc/nqnext || exit 1
+curl -L https://github.com/ovenator/nqnext-agent/archive/refs/heads/master.tar.gz | tar -xz --strip-components 1 -C $NQ_HOME || exit 1
 
-if [ -f /etc/nqnext/agent/run.sh ]
+if [ -f $NQ_HOME/agent/run.sh ]
 then
 	# Create env file
-	echo "NQ_AUTH='$1'" >> /etc/nqnext/agent/env
-	echo "NQ_HOST='https://nqnext.ove.me'" >> /etc/nqnext/agent/env
-	echo "NQ_HOME='/etc/nqnext'" >> /etc/nqnext/agent/env
+	NQ_ENV_FILE=$NQ_HOME/agent/env.txt
+	echo "NQ_AUTH='$1'" >> $NQ_ENV_FILE
+	echo "NQ_HOST='https://nqnext.ove.me'" >> $NQ_ENV_FILE
+	echo "NQ_HOME='$NQ_HOME'" >> $NQ_ENV_FILE
 
 	# Create user
-	useradd nqnext -r -d /etc/nqnext -s /bin/false
+	useradd nqnext -r -d $NQ_HOME -s /bin/false
 
 	# Modify user permissions
-	chown -R nqnext:nqnext /etc/nqnext && chmod -R 700 /etc/nqnext
+	chown -R nqnext:nqnext $NQ_HOME && chmod -R 700 $NQ_HOME
 
 	# Modify ping permissions
 	chmod +s `type -p ping`
 
 	# Configure cron
-	crontab -u nqnext -l 2>/dev/null | { cat; echo "*/1 * * * * bash cd /etc/nqnext/agent && ./run.sh > cron.log 2>&1"; } | crontab -u nqnext -
+	crontab -u nqnext -l 2>/dev/null | { cat; echo "*/1 * * * * bash cd $NQ_HOME/agent && ./run.sh > cron.log 2>&1"; } | crontab -u nqnext -
 
 	# Show success
 	echo -e "|\n|   Success: The NQNext agent has been installed\n|"
