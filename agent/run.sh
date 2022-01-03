@@ -65,7 +65,7 @@ curl -F "file=@out.tar.xz" \
   --connect-timeout 60 \
   --max-time 120 \
   --insecure \
-  $NQ_HOST/servers/api/agent/upload
+  $NQ_HOST/agent/upload
 
 echo ""
 echo "Done."

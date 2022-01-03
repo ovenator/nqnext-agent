@@ -40,3 +40,5 @@ fi
 
 # Remove agent dir
 rm -Rf /etc/nqnext/agent
+
+echo -e "|\n|   Success: The NQNext agent has been uninstalled\n|"
