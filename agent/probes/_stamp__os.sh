@@ -32,4 +32,5 @@ else
 fi
 
 
-echo "_value:$OS $VER"
+echo "{{_value:$OS $VER}}"
+echo "{{_preview:true}}"
