@@ -134,7 +134,7 @@ then
 	# Create env file
 	NQ_ENV_FILE=$NQ_HOME/agent/env.txt
 	echo "NQ_AUTH='$1'" >> $NQ_ENV_FILE
-	echo "NQ_HOST='https://nqnext.ove.me'" >> $NQ_ENV_FILE
+	echo "NQ_HOST='https://ingest.logwars.com'" >> $NQ_ENV_FILE
 	echo "NQ_HOME='$NQ_HOME'" >> $NQ_ENV_FILE
 
 	# Create user
