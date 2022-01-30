@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MINUTE_AVG_LOAD=$(cat /proc/loadavg | tee tee /dev/tty | awk '{ print $1 }')
+MINUTE_AVG_LOAD=$(cat /proc/loadavg | awk '{ print $1 }')
 CPU_CORES=$(nproc)
 
 echo "{{_max:$CPU_CORES}}"

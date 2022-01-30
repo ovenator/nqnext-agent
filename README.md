@@ -35,9 +35,3 @@ https://logwars.com
 #### \_log__{id}
 Short log, may be trimmed. Usable for short list of running services etc.
 
-
-#### \_disk__{id}
-This is a shortcut to collect metrics on disks
-See example in `agent/probes/_disk__root.sh`
-- **_preview**
-  - **true** show metric preview on server card in list of servers

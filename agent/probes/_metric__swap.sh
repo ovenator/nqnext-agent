@@ -8,5 +8,5 @@ SWAP_USED=$(($SWAP_TOTAL - $SWAP_AVAIL))
 echo "{{_max:$SWAP_TOTAL}}"
 echo "{{_value:$SWAP_USED}}"
 echo "{{_unit:kb}}"
-echo "{{_label:Memory}}"
+echo "{{_label:Swap}}"
 echo "{{_preview:true}}"
